@@ -1,0 +1,19 @@
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION = "2"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  ${HOME}/kitchen-atom/sources/poky/meta \
+  ${HOME}/kitchen-atom/sources/poky/meta-poky \
+  ${HOME}/kitchen-atom/sources/meta-openembedded/meta-oe \
+  ${HOME}/kitchen-atom/sources/meta-openembedded/meta-networking \
+  ${HOME}/kitchen-atom/sources/meta-openembedded/meta-multimedia \
+  ${HOME}/kitchen-atom/sources/meta-intel \
+  ${HOME}/kitchen-atom/sources/meta-mesa \
+  ${HOME}/kitchen-atom/sources/meta-kodi \
+  ${HOME}/kitchen-atom/meta/meta-kitchen \
+  ${HOME}/kitchen-atom/meta/meta-python \ 
+  "

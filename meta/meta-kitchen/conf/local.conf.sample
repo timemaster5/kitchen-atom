@@ -1,0 +1,67 @@
+# Local configuration for meta-atom images
+# Supporting 32-bit Atom eee100hg netbooks
+# Yocto Project 3.0 Poky distribution [zeus] branch
+# Enable some codecs
+LICENSE_FLAGS_WHITELIST = "commercial"
+
+DISTRO_FEATURES_append = " ext2 pam systemd alsa pulseaudio opengl wayland wifi"
+DISTRO_FEATURES_remove = " x11"
+
+# Systemd
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = ""
+
+PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
+
+# Machine
+MACHINE = "intel-core2-32"
+
+# Kernel
+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
+PREFERRED_VERSION_linux-intel = "5.2.%"
+
+# Installed software
+SYSTEM_PKG = " \
+  eee-acpi-scripts \
+  weston \
+  weston-init \  
+"
+
+KODI_PKG = " \
+  kodi \
+  kodi-python \
+"
+
+IMAGE_INSTALL_append = " ${SYSTEM_PKG} ${KODI_PKG}"
+
+# Kodi setup
+VAAPISUPPORT = "0"
+VDPAUSUPPORT = "0"
+KODIGRAPHICALBACKEND = "gbm"
+KODISYSTEMDAUTOSTART="disable"
+
+# Distro setup
+DISTRO = "poky"
+PACKAGE_CLASSES = "package_ipk"
+SDKMACHINE = "x86_64"
+
+# for no root password
+EXTRA_IMAGE_FEATURES = "debug-tweaks"
+#EXTRA_IMAGE_FEATURES_append = " dbg-pkgs"
+
+# GPU Drivers setup
+ADDITIONAL_MESA_GPUS ?= " \
+  gallium-llvm \
+  i915 \
+"
+
+PACKAGECONFIG_append_pn-mesa = "${ADDITIONAL_MESA_GPUS}"
+
+# Random tweaks
+USER_CLASSES = "image-mklibs image-prelink"
+
+PATCHRESOLVE = "noop"
+RM_OLD_IMAGE = "1"
+INHERIT += "ccache rm_work"
+CONF_VERSION = "1"
