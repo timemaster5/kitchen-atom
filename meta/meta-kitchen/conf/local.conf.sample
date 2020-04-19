@@ -4,8 +4,10 @@
 # Enable some codecs
 LICENSE_FLAGS_WHITELIST = "commercial"
 
-DISTRO_FEATURES_append = " ext2 pam systemd alsa pulseaudio opengl wayland wifi"
+DISTRO_FEATURES_append = " ext2 pam systemd alsa pulseaudio opengl wifi wayland"
 DISTRO_FEATURES_remove = " x11"
+
+IMAGE_FEATURES_append = " splash"
 
 # Systemd
 DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
@@ -24,13 +26,18 @@ PREFERRED_VERSION_linux-intel = "5.2.%"
 # Installed software
 SYSTEM_PKG = " \
   eee-acpi-scripts \
+  psplash \
   weston \
-  weston-init \  
+  weston-init \
+  b43-firmware \
 "
 
 KODI_PKG = " \
   kodi \
-  kodi-python \
+  python-pycryptodomex \
+  kodi-addon-inputstream-adaptive \
+  nspr \
+  nss \
 "
 
 IMAGE_INSTALL_append = " ${SYSTEM_PKG} ${KODI_PKG}"
@@ -47,7 +54,7 @@ PACKAGE_CLASSES = "package_ipk"
 SDKMACHINE = "x86_64"
 
 # for no root password
-EXTRA_IMAGE_FEATURES = "debug-tweaks"
+EXTRA_IMAGE_FEATURES_append = " debug-tweaks"
 #EXTRA_IMAGE_FEATURES_append = " dbg-pkgs"
 
 # GPU Drivers setup

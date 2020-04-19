@@ -15,5 +15,4 @@ BBLAYERS ?= " \
   ${HOME}/kitchen-atom/sources/meta-mesa \
   ${HOME}/kitchen-atom/sources/meta-kodi \
   ${HOME}/kitchen-atom/meta/meta-kitchen \
-  ${HOME}/kitchen-atom/meta/meta-python \ 
   "
